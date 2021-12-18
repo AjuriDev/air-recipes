@@ -1,0 +1,59 @@
+.container {
+  @include container();
+  display: flex;
+
+  @include --tablet {
+    flex-direction: column;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 10rem;
+
+    @include --tablet {
+      margin-bottom: 8rem;
+    }
+
+    @include --mobile-lg {
+      margin-bottom: 6.4rem;
+    }
+  }
+
+  &__content {
+    flex: 1 1 auto;
+
+    > * {
+      &:not(:last-child) {
+        margin-bottom: 4rem;
+
+        @include --tablet {
+          margin-bottom: 3.2rem;
+        }
+
+        @include --mobile-lg {
+          margin-bottom: 1.6rem;
+        }
+      }
+    }
+  }
+
+  &__sidebar {
+    flex: 0 0 25.9rem;
+
+    &:not(:last-child) {
+      margin-right: 4rem;
+    }
+
+    @include --tablet {
+      display: none;
+    }
+  }
+
+  &__title {
+    @include h2;
+    margin: 0;
+
+    &:not(:last-child) {
+      margin-bottom: 2.4rem;
+    }
+  }
+}

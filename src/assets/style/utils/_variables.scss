@@ -1,0 +1,50 @@
+// --
+// This file contains all application-wide Sass variables.
+// ==
+
+// regular font family
+$font_primary: 'Roboto', 'Arial', sans-serif !default;
+$font_secondary: 'Gilroy', 'Arial', sans-serif !default;
+
+// colors
+
+$color_base0: #000000;
+$color_base1: #FFFFFF;
+$color_shade20: #DDDDDD;
+$color_shade40: #A9A9A9;
+$color_shade50: #82786A;
+$color_easy: #2FB65D;
+$color_medium: #EB8A31;
+$color_hard: #EB3C31;
+$color_success: #2FB65D;
+$color_error: #EB3C31;
+
+$color_white: #ffffff;
+$color_black: #000000;
+
+// z-index
+$z_index_menu: 100;
+$z_index_tooltip: 125;
+$z_index_modal: 150;
+$z_index_error: 200;
+$z_index_loader: 300;
+
+// container
+$width_container: 108.4rem;
+$width_container_tablet: calc(100% - 4.8rem);
+$width_container_mobile: calc(100% - 3.2rem);
+$width_container_cramped: 48.6rem;
+
+$margin_container_desktop: 4rem;
+$margin_container_tablet: 4rem;
+
+//header
+$height_header: 8.8rem;
+$height_header_mobile: 4.8rem;
+
+//borders
+$border_radius_sm: 4px;
+$border_radius_lg: 8px;
+
+//transitions
+$transition_duration: 250ms;

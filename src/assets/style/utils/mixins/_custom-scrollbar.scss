@@ -1,0 +1,23 @@
+$scrollbarWidth: 1rem;
+
+@mixin custom-scrollbar($paddingRight: 0) {
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  @include --from-tablet {
+    padding-right: $paddingRight + $scrollbarWidth;
+
+    &::-webkit-scrollbar {
+      width: $scrollbarWidth; /* width of the entire scrollbar */
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba($color_base0, 0.2); /* color of the tracking area */
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10rem; /* roundness of the scroll thumb */
+      background-color: rgba($color_base0, 0.5); /* color of the scroll thumb */
+    }
+  }
+}

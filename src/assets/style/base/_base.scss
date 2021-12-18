@@ -1,0 +1,85 @@
+// --
+// base
+// ==
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  outline: none;
+}
+
+// start sticky footer
+[id='root'] {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  //padding-top: $height_header + 4rem;
+  //
+  //@include --tablet {
+  //  padding-top: $height_header + 3.2rem;
+  //}
+  //
+  //@include --mobile-lg {
+  //  padding-top: $height_header_mobile + 1.6rem;
+  //}
+
+  > footer {
+    margin-top: auto;
+  }
+}
+// end
+
+// --
+// base styles
+// ==
+
+html,
+body {
+  @include custom-scrollbar(-1rem);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  margin: 0;
+  font-family: $font_primary;
+}
+
+html {
+  color: $color_base0;
+  font-size: 62.5%;
+  background: $color_white; // in some versions Opera background is black by default
+
+  @media screen and (max-width: 767px) {
+    font-size: calc(10px + 13 * (100vw - 375px) / 447);
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    font-size: calc(10px + 4 * (100vw - 768px) / 255);
+  }
+
+  @media (min-width: 1024px) and (max-width: 1360px) {
+    font-size: calc(8px + 2 * (100vw - 1024px) / 336);
+  }
+}
+
+body {
+  padding-right: 0 !important;
+  font-size: 1.6rem;
+  background-color: $color_white;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+  box-shadow: 0 0 0 30px #fff inset !important;
+}
+
+.visually-hidden {
+  @include visually-hidden();
+}

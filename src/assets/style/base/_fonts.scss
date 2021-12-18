@@ -1,0 +1,34 @@
+// --
+// fonts
+// ==
+
+/* stylelint-disable */
+/**
+ * Get font from path
+ * '../fonts/$fontFolderName/$fontWeight.woff'
+ * '../fonts/$fontFolderName/$fontWeight.woff2'
+ * example @include font('Open Sans', 'OpenSans' 400); подключит '../fonts/OpenSans/400.woff'
+ */
+@mixin font(
+  $fontFamily: '',
+  $fontFolderName: '',
+  $fontWeight: 400,
+  $fontStyle: normal,
+  $fontDisplay: swap
+) {
+  @font-face {
+    font-family: $fontFamily;
+    src: url('../../fonts/#{$fontFolderName}/#{$fontWeight}.woff2')
+        format('woff2'),
+      url('../../fonts/#{$fontFolderName}/#{$fontWeight}.woff') format('woff');
+    font-style: $fontStyle;
+    font-weight: $fontWeight;
+    font-display: $fontDisplay;
+  }
+}
+
+@include font('Gilroy', 'gilroy', 800);
+@include font('Roboto', 'roboto', 400);
+@include font('Roboto', 'roboto', 500);
+@include font('Roboto', 'roboto', 700);
+/* stylelint-enable */

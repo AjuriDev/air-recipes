@@ -1,0 +1,26 @@
+.toast {
+  @include text();
+
+  > * {
+    &:not(:last-child) {
+      margin-bottom: 0.6rem;
+    }
+  }
+
+  p:not([class]),
+  h1:not([class]),
+  h2:not([class]),
+  h3:not([class]),
+  h4:not([class]) {
+    margin: 0;
+  }
+
+  a:not([class]) {
+    @include reset-link;
+  }
+
+  ul:not([class]),
+  ol:not([class]) {
+    @include reset-list;
+  }
+}

@@ -1,0 +1,7 @@
+.flickity-slider {
+  > * {
+    &:not(.is-selected) {
+      pointer-events: none;
+    }
+  }
+}

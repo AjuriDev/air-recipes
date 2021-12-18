@@ -1,0 +1,255 @@
+@mixin btn() {
+  @include reset-btn;
+  @include btn-text();
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  border: 1px solid;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: color $transition_duration ease,
+    background-color $transition_duration ease, border $transition_duration ease;
+
+  > svg {
+    @include box(2.4rem);
+    flex: 0 0 2.4rem;
+    transition: fill $transition_duration ease, stroke $transition_duration ease;
+
+    &:not(:last-child) {
+      margin-right: 1.2rem;
+    }
+
+    &:not(:first-child) {
+      margin-left: 1.2rem;
+    }
+  }
+
+  @include hover {
+    text-decoration: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin btn-filled() {
+  @include btn;
+  border-color: rgba(0, 0, 0, 0.2);
+  color: $color_white;
+  background: $color_shade50;
+
+  &:disabled {
+    background-color: $color_shade20;
+  }
+
+  &:not(:disabled) {
+    @include hover {
+    }
+
+    @include active {
+    }
+
+    &._inverse {
+      color: $color_base0;
+      background-color: $color_base1;
+
+      @include hover {
+      }
+
+      @include active {
+      }
+    }
+
+    &._error {
+      @include hover {
+      }
+
+      @include active {
+      }
+    }
+
+    &._success {
+      @include hover {
+      }
+
+      @include active {
+      }
+    }
+
+    &._warn {
+      @include hover {
+      }
+
+      @include active {
+      }
+    }
+  }
+}
+
+@mixin btn-outline() {
+  @include btn;
+  border-color: $color_shade20;
+  color: $color_shade50;
+  background: transparent;
+
+  &:disabled {
+    color: $color_shade20;
+  }
+
+  &:not(:disabled) {
+    @include hover {
+    }
+
+    @include active {
+    }
+
+    &._inverse {
+      border-color: $color_base1;
+      color: $color_base1;
+
+      @include hover {
+      }
+
+      @include active {
+      }
+    }
+
+    &._error {
+      @include hover {
+      }
+
+      @include active {
+      }
+    }
+
+    &._success {
+      @include hover {
+      }
+
+      @include active {
+      }
+    }
+
+    &._warn {
+      @include hover {
+      }
+
+      @include active {
+      }
+    }
+  }
+}
+
+@mixin btn-text() {
+  @include btn;
+  padding: 0;
+  border: none;
+  color: $color_shade50;
+  background-color: transparent;
+
+  &:disabled {
+    color: $color_shade20;
+  }
+
+  &:not(:disabled) {
+    @include hover {
+    }
+
+    @include active {
+    }
+
+    &._inverse {
+      color: $color_base1;
+
+      @include hover {
+      }
+
+      @include active {
+      }
+    }
+
+    &._error {
+      @include hover {
+      }
+
+      @include active {
+      }
+    }
+
+    &._success {
+      @include hover {
+      }
+
+      @include active {
+      }
+    }
+
+    &._warn {
+      @include hover {
+      }
+
+      @include active {
+      }
+    }
+  }
+}
+
+@mixin btn-icon() {
+  @include btn;
+  padding: 1.6rem;
+  border-color: $color_shade20;
+  color: $color_base0;
+  background-color: transparent;
+
+  &:disabled {
+    color: $color_disabled;
+  }
+
+  &:not(:disabled) {
+    @include hover {
+    }
+
+    @include active {
+    }
+
+    &._inverse {
+      color: $color_base1;
+
+      @include hover {
+      }
+
+      @include active {
+      }
+    }
+
+    &._error {
+      @include hover {
+      }
+
+      @include active {
+      }
+    }
+
+    &._success {
+      @include hover {
+      }
+
+      @include active {
+      }
+    }
+
+    &._warn {
+      @include hover {
+      }
+
+      @include active {
+      }
+    }
+  }
+}

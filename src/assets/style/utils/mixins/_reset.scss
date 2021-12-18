@@ -1,0 +1,17 @@
+@mixin reset-btn {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  text-align: left;
+}
+
+@mixin reset-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+@mixin reset-list {
+  margin: 0;
+  padding-left: 0;
+  list-style-type: none;
+}

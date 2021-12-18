@@ -1,0 +1,14 @@
+@mixin dots-loading($duration: 1s) {
+  pointer-events: none;
+
+  &::after {
+    animation: dots-loading-animation $duration ease alternate infinite;
+    content: '.';
+  }
+}
+
+@keyframes dots-loading-animation {
+  60%  { text-shadow: 0.35em 0 0 currentColor; }
+
+  100% { text-shadow: 0.35em 0 0 currentColor, 0.75em 0 0 currentColor; }
+}

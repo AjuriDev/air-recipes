@@ -1,0 +1,48 @@
+@import-normalize;
+
+// ==
+// 1 - import utils
+// ==
+
+@import 'assets/style/utils';
+
+// ==
+// 2 - import base styles
+// ==
+
+@import 'assets/style/base/fonts';
+@import 'assets/style/base/base';
+
+// ==
+// 3 - import layout
+// ==
+
+@import 'assets/style/layout/container';
+
+// ==
+// 4 - import modules
+// ==
+
+// ==
+// 5 - import UI
+// ==
+
+// ==
+// 6 - import pages
+// ==
+
+// ==
+// 7 - edit vendor edit
+// ==
+
+// ==
+// 8 - theme styles
+// IMPORTANT: vendor plugins import in vendor.scss
+// ==
+
+// ==
+// 9 - import plugins
+// ==
+
+@import 'assets/style/plugins/flickity';
+@import 'assets/style/plugins/toaster-notify';
