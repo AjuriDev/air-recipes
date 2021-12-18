@@ -5,6 +5,7 @@ const APIRoute = {
 };
 
 const StoreNameSpace = {
+  RESPONSIVE: 'RESPONSIVE',
 };
 
 const Breakpoints = {
