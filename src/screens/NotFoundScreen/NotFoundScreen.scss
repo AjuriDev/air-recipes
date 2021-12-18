@@ -1,0 +1,10 @@
+@import '../../assets/style/utils';
+
+.not-found {
+  padding: 3.2rem;
+
+  &__back {
+    @include reset-link;
+    @include btn-filled;
+  }
+}

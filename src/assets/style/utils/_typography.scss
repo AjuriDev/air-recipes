@@ -55,7 +55,7 @@
   }
 }
 
-@mixin btn-text($weight: 500) {
+@mixin text-btn($weight: 500) {
   font-weight: $weight;
   font-size: 1.4rem;
   line-height: 1.6rem;

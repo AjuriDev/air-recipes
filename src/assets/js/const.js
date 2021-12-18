@@ -1,4 +1,10 @@
 const AppRoute = {
+  ROOT: {
+    PATH: '/',
+  },
+  RECIPE: {
+    PATH: '/recipe',
+  },
 };
 
 const APIRoute = {
