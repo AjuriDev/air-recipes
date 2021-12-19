@@ -7,9 +7,8 @@ import { createAPI } from './services/api';
 import reducer from './store/root-reducer';
 import { redirect } from './store/middlewares/redirect';
 import { redirectToRoute } from './store/actions/routing';
-import {
-  AppRoute,
-} from './assets/js/const';
+import { fetchRecipes } from './store/actions/api';
+import { AppRoute } from './assets/js/const';
 
 import './index.scss';
 
@@ -29,10 +28,11 @@ const store = configureStore({
     }).concat(redirect),
 });
 
+store.dispatch(fetchRecipes());
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('root')
 );
-

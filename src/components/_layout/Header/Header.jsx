@@ -24,7 +24,7 @@ const Header = () => {
               value={searchQuery}
               onChange={handleSearchQueryChange}
               placeholder="Search"
-              Icon={search}
+              icon={search}
               isClearable
             />
             <button className="header__show-filters btn _icon" type="button">{filter}</button>

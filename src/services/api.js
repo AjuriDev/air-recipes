@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BACKEND_URL = 'https://test.kode-t.ru/list';
+const BACKEND_URL = 'https://test.kode-t.ru/';
 const REQUEST_TIMEOUT = 5000;
 
 const HttpCodes = {
@@ -14,10 +14,12 @@ export const createAPI = (onUnauthorized, onNotFound, onServiceUnavailable) => {
   const api = axios.create({
     baseURL: BACKEND_URL,
     timeout: REQUEST_TIMEOUT,
-    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
   });
 
-  const onSuccess = (data) => data;
+  const onSuccess = (response) => response.data;
 
   const onFail = ({ response }) => {
     if (response.status === HttpCodes.UNAUTHORIZED) {

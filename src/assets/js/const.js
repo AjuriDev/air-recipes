@@ -7,11 +7,25 @@ const AppRoute = {
   },
 };
 
+const ResponseTypes = {
+  JSON: '.json',
+};
+
 const APIRoute = {
+  RECIPES: {
+    PATHNAME: '/list',
+    POSTFIX: ResponseTypes.JSON,
+  },
+  RECIPE: {
+    PATHNAME: '/detail_',
+    POSTFIX: ResponseTypes.JSON,
+  },
 };
 
 const StoreNameSpace = {
   RESPONSIVE: 'RESPONSIVE',
+  RECIPES: 'RECIPES',
+  RECIPE: 'RECIPE',
 };
 
 const Breakpoints = {
@@ -26,7 +40,6 @@ const ToasterTypes = {
 
 const TOASTER_DURATION = 5000;
 
-
 export {
   AppRoute,
   APIRoute,
@@ -34,4 +47,5 @@ export {
   Breakpoints,
   ToasterTypes,
   TOASTER_DURATION,
+  ResponseTypes,
 };
