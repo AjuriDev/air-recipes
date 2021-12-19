@@ -1,8 +1,17 @@
+import Header from '../../components/_layout/Header';
+import Container from '../../components/_layout/Container';
+
 import './MainScreen.scss';
 
 const MainScreen = () => {
   return (
-    <div>Air recipes</div>
+    <>
+      <Header />
+
+      <Container>
+        <div>Air recipes</div>
+      </Container>
+    </>
   );
 };
 

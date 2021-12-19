@@ -1,0 +1,66 @@
+@import 'src/assets/style/utils';
+
+.header {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: $z_index_menu;
+  width: 100%;
+  height: $height_header;
+
+  &:not(:last-child) {
+    margin-bottom: 3.2rem;
+
+    @include --mobile-lg {
+      margin-bottom: 2.4rem;
+    }
+  }
+
+  &__content {
+    width: 34.8rem;
+    padding-top: 12.8rem;
+  }
+
+  &__title {
+    @include h1;
+    margin: 0;
+  }
+
+  &__subtitle {
+    @include text;
+    display: block;
+    color: $color_shade50;
+
+    &:not(:last-child) {
+      margin-bottom: 3.2rem;
+    }
+  }
+
+  &__search-bar {
+    display: flex;
+
+    > * {
+      &:not(:last-child) {
+        margin-right: 1.6rem;
+      }
+    }
+  }
+
+  &__show-image {
+    flex: 0 0 5.6rem;
+  }
+
+  &__image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(100% - 34.8rem - 2rem - (100% - 108.4rem) / 2);
+    height: 100%;
+    overflow: hidden;
+
+    > img {
+      @include adaptiveImg();
+      transform: scale(1.15);
+    }
+  }
+}
