@@ -1,0 +1,82 @@
+@import '../../../assets/style/utils';
+
+.input-wrapper {
+  @include text();
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 32rem;
+  color: $color_shade40;
+
+  > input {
+    @include text();
+    width: 100%;
+    padding: 1.6rem;
+    border: 1px solid $color_shade20;
+    border-radius: 10rem;
+    color: $color_base0;
+    transition: color $transition_duration ease,
+      border-color $transition_duration ease;
+
+    &:focus {
+      border-color: $color_shade40;
+
+      ~ .input-wrapper__clear {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+
+    @include placeholder-text {
+      opacity: 1;
+      color: $color_shade40;
+    }
+
+    ._with-icon & {
+      padding-left: 5.6rem;
+    }
+
+    ._clearable & {
+      padding-right: 4.8rem;
+    }
+  }
+
+  &._with-icon {
+    > input {
+      padding-left: 5.6rem;
+    }
+  }
+
+  &._clearable {
+    > input {
+      padding-right: 4.8rem;
+    }
+  }
+
+  > svg {
+    @include box(2.4rem);
+    position: absolute;
+    top: 50%;
+    left: 1.6rem;
+    transform: translateY(-50%);
+  }
+
+  &__clear {
+    @include reset-btn;
+    position: absolute;
+    top: 50%;
+    right: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color_shade40;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: opacity $transition_duration ease;
+
+    > svg {
+      @include box(2.4rem);
+    }
+  }
+}
