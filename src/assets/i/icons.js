@@ -1,4 +1,0 @@
-const icons = {
-};
-
-export { icons };
