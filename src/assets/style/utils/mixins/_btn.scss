@@ -205,11 +205,12 @@
   @include btn;
   padding: 1.6rem;
   border-color: $color_shade20;
+  border-radius: 10rem;
   color: $color_base0;
   background-color: transparent;
 
   &:disabled {
-    color: $color_disabled;
+    color: $color_shade20;
   }
 
   &:not(:disabled) {

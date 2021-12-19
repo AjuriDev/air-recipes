@@ -1,0 +1,19 @@
+.btn {
+  @include btn;
+
+  &._filled {
+    @include btn-filled;
+  }
+
+  &._outline {
+    @include btn-outline;
+  }
+
+  &._text {
+    @include btn-text;
+  }
+
+  &._icon {
+    @include btn-icon;
+  }
+}
