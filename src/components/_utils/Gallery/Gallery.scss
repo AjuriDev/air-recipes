@@ -1,0 +1,18 @@
+@import 'src/assets/style/utils';
+
+.gallery {
+
+  &__image {
+    position: relative;
+    width: 100%;
+    padding-top: 66.6%;
+
+    > img {
+      @include adaptiveImg;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

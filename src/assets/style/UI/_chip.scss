@@ -5,8 +5,12 @@
   justify-content: center;
   padding: 0.8rem 1.2rem;
   border-radius: 10rem;
-  color: $color_base0;
+  color: $color_chip_icon;
   background-color: $color_base1;
+
+  > span {
+    color: $color_base0;
+  }
 
   > svg {
     @include box(2.4rem);
@@ -14,16 +18,20 @@
     transition: fill $transition_duration ease, stroke $transition_duration ease;
 
     &:not(:last-child) {
-      margin-right: 1.2rem;
+      margin-right: 0.8rem;
     }
 
     &:not(:first-child) {
-      margin-left: 1.2rem;
+      margin-left: 0.8rem;
     }
   }
 
   &._error {
     color: $color_hard;
+
+    > span {
+      color: inherit;
+    }
 
     @include hover {
     }
@@ -35,6 +43,10 @@
   &._success {
     color: $color_easy;
 
+    > span {
+      color: inherit;
+    }
+
     @include hover {
     }
 
@@ -44,6 +56,10 @@
 
   &._warn {
     color: $color_medium;
+
+    > span {
+      color: inherit;
+    }
 
     @include hover {
     }

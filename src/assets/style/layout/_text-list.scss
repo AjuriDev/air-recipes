@@ -1,0 +1,51 @@
+.text-list {
+  @include reset-list;
+
+  > li {
+    position: relative;
+
+    &:not(:last-child) {
+      margin-bottom: 1em;
+    }
+  }
+}
+
+ul.text-list {
+  padding-left: 1rem;
+
+  > li {
+    &::before {
+      @include box(3px);
+      position: absolute;
+      top: 0.6em;
+      left: -0.9rem;
+      display: block;
+      background-color: $color_base0;
+      content: '';
+    }
+  }
+}
+
+ol.text-list {
+  padding-left: 2.4rem;
+  counter-reset: item;
+
+  > li {
+    &::before {
+      @include box(1.6rem);
+      @include text-xs;
+      position: absolute;
+      top: 0.4em;
+      left: -2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 2px;
+      border: 1px solid $color_shade20;
+      border-radius: 50%;
+      color: $color_base0;
+      content: counter(item);
+      counter-increment: item;
+    }
+  }
+}

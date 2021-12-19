@@ -27,7 +27,7 @@ const RecipeCard = ({
             cuisine.title,
           ].map((item) => (
             <div key={item} className="chip">
-              {item}
+              <span>{item}</span>
             </div>
           ))}
         </div>

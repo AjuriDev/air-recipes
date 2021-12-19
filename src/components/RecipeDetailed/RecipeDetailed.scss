@@ -1,0 +1,50 @@
+@import 'src/assets/style/utils';
+
+.recipe-detailed {
+  @include text;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 2rem;
+
+  &__info {
+    > .text-list {
+      &:not(:last-child) {
+        margin-bottom: 3.2rem;
+      }
+    }
+  }
+
+  &__title {
+    @include h2;
+    margin: 0;
+
+    &:not(:last-child) {
+      margin-bottom: 1.6rem;
+    }
+  }
+
+  &__description {
+    margin: 0;
+
+    &:not(:last-child) {
+      margin-bottom: 1.6rem;
+    }
+  }
+
+  &__chip-bar {
+    @include flex-gap(3.2rem, 1.6rem);
+
+    &:not(:last-child) {
+      margin-bottom: 3.2rem;
+    }
+  }
+
+  &__list-title {
+    @include h3;
+    margin: 0;
+
+    &:not(:last-child) {
+      margin-bottom: 1.6rem;
+    }
+  }
+}
