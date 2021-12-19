@@ -1,0 +1,17 @@
+@import 'src/assets/style/utils';
+
+.recipes-block {
+
+  &__title {
+    @include h2;
+    margin: 0;
+
+    &:not(:last-child) {
+      margin-bottom: 2.4rem;
+
+      @include --mobile-lg {
+        margin-bottom: 3.2rem;
+      }
+    }
+  }
+}

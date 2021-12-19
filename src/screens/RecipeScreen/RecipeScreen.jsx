@@ -8,6 +8,7 @@ import './RecipeScreen.scss';
 const RecipeScreen = () => {
   const dispatch = useDispatch();
   const { params } = useRouteMatch();
+  console.log(params)
 
   useEffect(() => {
     dispatch(fetchRecipe(params.id));

@@ -1,0 +1,59 @@
+.chip {
+  @include text-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.2rem;
+  border-radius: 10rem;
+  color: $color_base0;
+  background-color: $color_base1;
+
+  > svg {
+    @include box(2.4rem);
+    flex: 0 0 2.4rem;
+    transition: fill $transition_duration ease, stroke $transition_duration ease;
+
+    &:not(:last-child) {
+      margin-right: 1.2rem;
+    }
+
+    &:not(:first-child) {
+      margin-left: 1.2rem;
+    }
+  }
+
+  &._error {
+    color: $color_hard;
+
+    @include hover {
+    }
+
+    @include active {
+    }
+  }
+
+  &._success {
+    color: $color_easy;
+
+    @include hover {
+    }
+
+    @include active {
+    }
+  }
+
+  &._warn {
+    color: $color_medium;
+
+    @include hover {
+    }
+
+    @include active {
+    }
+  }
+
+  &._text {
+    @include text;
+    padding: 0;
+  }
+}

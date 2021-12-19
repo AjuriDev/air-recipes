@@ -9,8 +9,12 @@ import { redirect } from './store/middlewares/redirect';
 import { redirectToRoute } from './store/actions/routing';
 import { fetchRecipes } from './store/actions/api';
 import { AppRoute } from './assets/js/const';
+import dayjs from 'dayjs';
 
 import './index.scss';
+
+dayjs.extend(require('dayjs/plugin/duration'));
+dayjs.extend(require('dayjs/plugin/relativeTime'));
 
 const api = createAPI(
   () => {},

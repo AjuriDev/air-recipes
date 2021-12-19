@@ -1,0 +1,10 @@
+@mixin flex-gap($col-gap: 0.8rem, $row-gap: 0.8rem, $width: 100%) {
+  display: inline-flex;
+  flex-flow: row wrap;
+  width: calc(#{$width} + #{$col-gap});
+  margin: calc(-1 * #{$row-gap}) 0 0 calc(-1 * #{$col-gap});
+
+  > * {
+    margin: $row-gap 0 0 $col-gap;
+  }
+}

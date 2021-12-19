@@ -40,6 +40,12 @@ const ToasterTypes = {
 
 const TOASTER_DURATION = 5000;
 
+const LoaderItemsCount = {
+  LITTLE: 2,
+  MEDIUM: 4,
+  LOT: 6,
+};
+
 export {
   AppRoute,
   APIRoute,
@@ -48,4 +54,5 @@ export {
   ToasterTypes,
   TOASTER_DURATION,
   ResponseTypes,
+  LoaderItemsCount,
 };

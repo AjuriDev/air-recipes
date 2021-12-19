@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateWindowParams } from '../../store/actions/responsive';
 
@@ -19,6 +19,17 @@ const useWindowResizer = () => {
   }, []);
 };
 
+const useStartFetching = (isFetching) => {
+  const [isStartFetching, setIsStartFetching] = useState(false);
+
+  useEffect(() => {
+    if (isFetching) setIsStartFetching(true);
+  }, [isFetching]);
+
+  return isStartFetching;
+};
+
 export {
   useWindowResizer,
+  useStartFetching,
 };

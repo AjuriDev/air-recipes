@@ -28,6 +28,7 @@ export const createAPI = (onUnauthorized, onNotFound, onServiceUnavailable) => {
     }
 
     if (response.status === HttpCodes.NOT_FOUND) {
+      console.log(1)
       onNotFound();
       throw response.data.errors;
     }
