@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateWindowParams, updateDocumentParams } from '../../store/actions/responsive';
+import { useLocation } from 'react-router-dom';
+import {
+  updateWindowParams,
+  updateDocumentParams,
+} from '../../store/actions/responsive';
 
 const useResponsive = () => {
   const dispatch = useDispatch();
@@ -12,7 +16,9 @@ const useResponsive = () => {
     dispatch(updateWindowParams({ width, height }));
 
     const htmlEl = document.querySelector('html');
-    const htmlFontSize = window.getComputedStyle(htmlEl, null).getPropertyValue('font-size');
+    const htmlFontSize = window
+      .getComputedStyle(htmlEl, null)
+      .getPropertyValue('font-size');
     const remInPixels = parseFloat(htmlFontSize);
 
     dispatch(updateDocumentParams({ remInPixels }));
@@ -35,7 +41,27 @@ const useStartFetching = (isFetching) => {
   return isStartFetching;
 };
 
-export {
-  useResponsive,
-  useStartFetching,
+const useScrollTo = (el) => {
+  const location = useLocation();
+  const [initRoute, setInitRoute] = useState(location.pathname);
+
+  useEffect(() => {
+    setInitRoute(location.pathname);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (
+      !el ||
+      window.scrollY <= el.clientHeight ||
+      location.pathname === initRoute
+    )
+      return;
+    window.scrollTo({
+      top: el.clientHeight - 16,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }, [location.pathname]);
 };
+
+export { useResponsive, useStartFetching, useScrollTo };

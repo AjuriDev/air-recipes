@@ -67,6 +67,9 @@ body {
   font-size: 1.6rem;
   background-color: $color_white;
 
+  // Компенсация зафиксированного хедера
+  padding-top: $height_header + 3.2rem;
+
   // Временое решение пока нет футера
   padding-bottom: 12rem;
 }

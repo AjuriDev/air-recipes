@@ -1,25 +1,87 @@
-import {useState} from 'react';
-import {Link} from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
+import {useScrollTo} from '../../../assets/js/hooks';
+import { Link } from 'react-router-dom';
 import Container from '../Container';
 import Input from '../../_UI/Input';
 import { search, filter } from '../../../assets/i/sprite';
 import headerImg from '../../../assets/i/header-image.png';
-import {AppRoute} from '../../../assets/js/const';
+import { AppRoute, StoreNameSpace } from '../../../assets/js/const';
+import getNumericDiapasonConverter from '../../../assets/js/utils/getNumericDiapasonConverter';
+import { gsap } from 'gsap';
 
 import './Header.scss';
 
+const HeaderHeight = {
+  MIN: 32,
+  MAX: 60,
+};
+
+const SCROLL_DISTANCE = 30;
+
 const Header = () => {
+  const { remInPixels } = useSelector(
+    (state) => state[StoreNameSpace.RESPONSIVE].document
+  );
+
   const [searchQuery, setSearchQuery] = useState('');
+
+  const headerEl = useRef(null);
+  const imageEl = useRef(null);
+
+  useEffect(() => {
+    const convertScrollToHeightInPixels = getNumericDiapasonConverter(
+      [HeaderHeight.MIN, HeaderHeight.MAX],
+      SCROLL_DISTANCE
+    );
+
+    const handleWindowScroll = () => {
+      // TODO нужно додумать оптимизацию скролла чтобы высота хедера изменялась при ресайзе окна
+      // if (
+      //   window.scrollY > SCROLL_DISTANCE * remInPixels &&
+      //   headerEl.current.clientHeight / remInPixels <= HeaderHeight.MIN
+      // )
+      //   return;
+
+      const scrollToHeightRate = convertScrollToHeightInPixels(window.scrollY);
+
+      let calcHeight = Math.round(
+        HeaderHeight.MAX * remInPixels - scrollToHeightRate
+      );
+
+      calcHeight =
+        calcHeight / remInPixels < HeaderHeight.MIN
+          ? HeaderHeight.MIN * remInPixels
+          : calcHeight;
+
+      gsap.set(headerEl.current, {
+        height: calcHeight,
+      });
+
+      gsap.set(imageEl.current, {
+        y: -((HeaderHeight.MAX * remInPixels - calcHeight) / 10),
+      });
+    };
+
+    handleWindowScroll();
+    window.addEventListener('scroll', handleWindowScroll);
+
+    return () => window.removeEventListener('scroll', handleWindowScroll);
+  }, [remInPixels]);
+
+  useScrollTo(headerEl.current);
 
   const handleSearchQueryChange = (value) => {
     setSearchQuery(value);
   };
 
   return (
-    <header className="header">
+    <header ref={headerEl} className="header">
       <Container>
         <div className="header__content">
-          <h1 className="header__title"><Link to={AppRoute.ROOT.PATH}>Air Recipes</Link></h1>
+          <h1 className="header__title">
+            <Link to={AppRoute.ROOT.PATH}>Air Recipes</Link>
+          </h1>
           <span className="header__subtitle">Best Recipes for Best People</span>
           <form className="header__search-bar">
             <Input
@@ -29,9 +91,11 @@ const Header = () => {
               icon={search}
               isClearable
             />
-            <button className="header__show-filters btn _icon" type="button">{filter}</button>
+            <button className="header__show-filters btn _icon" type="button">
+              {filter}
+            </button>
           </form>
-          <div className="header__image">
+          <div ref={imageEl} className="header__image">
             <img src={headerImg} alt="Delicious breakfast" />
           </div>
         </div>

@@ -2,9 +2,11 @@ import { useSelector } from 'react-redux';
 import { useStartFetching } from '../../assets/js/hooks';
 import { RecipeCard, RecipeCardLoader } from './components/RecipeCard';
 import Message from '../_utils/Message';
-import { StoreNameSpace, LoaderItemsCount } from '../../assets/js/const';
+import { StoreNameSpace } from '../../assets/js/const';
 
 import './RecipesBlock.scss';
+
+const LOADER_ITEMS_COUNT = 7;
 
 const RecipesBlock = () => {
   const {
@@ -29,7 +31,7 @@ const RecipesBlock = () => {
         ) : (
           <ul className="card-list">
             {isFetching && !recipes?.length > 0 ? (
-              new Array(LoaderItemsCount.LOT).fill('').map((item, i) => (
+              new Array(LOADER_ITEMS_COUNT).fill('').map((item, i) => (
                 <li key={i}>
                   <RecipeCardLoader />
                 </li>

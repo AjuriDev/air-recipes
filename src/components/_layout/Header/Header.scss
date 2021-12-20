@@ -1,12 +1,14 @@
 @import 'src/assets/style/utils';
 
 .header {
-  position: relative;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: $z_index_menu;
   width: 100%;
   height: $height_header;
+  background-color: $color_white;
+  box-shadow: 0 0.8rem 0.4rem 0 $color_white;
 
   &:not(:last-child) {
     margin-bottom: 3.2rem;
@@ -42,6 +44,8 @@
 
   &__search-bar {
     display: flex;
+    //border-radius: 10rem;
+    //background-color: $color_white;
 
     > * {
       &:not(:last-child) {
