@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import {useState} from 'react';
+import {Link} from 'react-router-dom';
 import Container from '../Container';
 import Input from '../../_UI/Input';
 import { search, filter } from '../../../assets/i/sprite';
 import headerImg from '../../../assets/i/header-image.png';
+import {AppRoute} from '../../../assets/js/const';
 
 import './Header.scss';
 
@@ -17,7 +19,7 @@ const Header = () => {
     <header className="header">
       <Container>
         <div className="header__content">
-          <h1 className="header__title">Air Recipes</h1>
+          <h1 className="header__title"><Link to={AppRoute.ROOT.PATH}>Air Recipes</Link></h1>
           <span className="header__subtitle">Best Recipes for Best People</span>
           <form className="header__search-bar">
             <Input
