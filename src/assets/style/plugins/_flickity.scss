@@ -1,7 +1,11 @@
-.flickity-slider {
-  > * {
-    &:not(.is-selected) {
-      pointer-events: none;
+.flickity-enabled {
+  &.is-fade {
+    .flickity-slider {
+      > * {
+        &:not(.is-selected) {
+          pointer-events: none;
+        }
+      }
     }
   }
 }

@@ -1,9 +1,49 @@
-import React from 'react';
+import { useEffect, useRef, memo } from 'react';
 import PropTypes from 'prop-types';
+import Slider from '../../../assets/js/modules/slider';
 
 import './Gallery.scss';
 
-const Gallery = ({ images, thumbnails }) => {
+const Gallery = ({ images }) => {
+  const mainSliderEl = useRef(null);
+  const navSliderEl = useRef(null);
+
+  useEffect(() => {
+    let mainSliderInstance = null;
+    let navSliderInstance = null;
+
+    if (mainSliderEl.current) {
+      mainSliderInstance = new Slider(mainSliderEl.current, {
+        contain: true,
+        pageDots: false,
+        fade: true,
+      });
+    }
+
+    if (navSliderEl.current) {
+      navSliderInstance = new Slider(navSliderEl.current, {
+        contain: true,
+        pageDots: false,
+      });
+
+      navSliderInstance?.flickity.on('staticClick', (e, pointer, cell, i) => {
+        navSliderInstance?.flickity.select(i);
+      });
+
+      navSliderInstance?.flickity.on('change', (i) => {
+        mainSliderInstance?.flickity?.select(i);
+      });
+
+      mainSliderInstance?.flickity.on('change', (i) => {
+        navSliderInstance?.flickity.select(i);
+      });
+    }
+
+    return () => {
+      mainSliderInstance?.destroy();
+      navSliderInstance?.destroy();
+    };
+  });
 
   if (!images.length) return null;
 
@@ -14,13 +54,23 @@ const Gallery = ({ images, thumbnails }) => {
           <img src={images[0]} alt="Ready meal" />
         </div>
       ) : (
-        <ul className="gallery__images">
-          {images.map((imageSrc) => (
-            <li key={imageSrc} className="gallery__image">
-              <img src={imageSrc} alt="Cooked dish" />
-            </li>
-          ))}
-        </ul>
+        <>
+          <ul ref={mainSliderEl}>
+            {images.map((imageSrc) => (
+              <li key={imageSrc} className="gallery__image">
+                <img src={imageSrc} alt="Cooked dish" />
+              </li>
+            ))}
+          </ul>
+
+          <ul ref={navSliderEl}>
+            {images.map((imageSrc) => (
+              <li key={imageSrc} className="gallery__thumbnail">
+                <img src={imageSrc} alt="Cooked dish" />
+              </li>
+            ))}
+          </ul>
+        </>
       )}
     </div>
   );
@@ -28,7 +78,6 @@ const Gallery = ({ images, thumbnails }) => {
 
 Gallery.propTypes = {
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
-  thumbnails: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default Gallery;
+export default memo(Gallery);

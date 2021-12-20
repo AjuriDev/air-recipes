@@ -13,11 +13,9 @@ import './RecipeDetailed.scss';
 
 const RecipeDetailed = ({ recipe }) => {
   const {
-    id,
     title,
     description,
     caloricity,
-    thumbnail,
     images,
     cuisine,
     cookTime,

@@ -38,7 +38,7 @@ const RecipeScreen = () => {
           <Message isError>An error has occurred!</Message>
         ) : isStartFetching && !isFetching && recipe.id === null ? (
           <Message>Recipe is missing</Message>
-        ) : isFetching && recipe.id === null ? (
+        ) : isFetching && recipe.id != params.id ? (
           <RecipeDetailedLoader />
         ) : (
           <RecipeDetailed recipe={recipe} />
