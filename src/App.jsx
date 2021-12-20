@@ -1,4 +1,4 @@
-import { useWindowResizer } from './assets/js/hooks';
+import { useResponsive } from './assets/js/hooks';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import MainScreen from './screens/MainScreen';
 import RecipeScreen from './screens/RecipeScreen';
@@ -6,7 +6,7 @@ import NotFoundScreen from './screens/NotFoundScreen';
 import { AppRoute } from './assets/js/const';
 
 function App() {
-  useWindowResizer();
+  useResponsive();
 
   return (
     <BrowserRouter>

@@ -24,7 +24,7 @@ import {
 } from 'mobile-device-detect';
 import { Breakpoints } from '../../assets/js/const';
 import hasWebGLSupport from '../../assets/js/utils/hasWebGLSupport';
-import { updateWindowParams } from '../actions/responsive';
+import { updateWindowParams, updateDocumentParams } from '../actions/responsive';
 
 const initialState = {
   window: {
@@ -37,6 +37,9 @@ const initialState = {
     isTabletSize: false,
     isMobileSize: false,
     positionHorizontal: false,
+  },
+  document: {
+    remInPixels: 10,
   },
   device: {
     isDesktop: !isMobile,
@@ -84,6 +87,13 @@ const responsive = createReducer(initialState, (builder) => {
       isTabletSize: action.payload.width <= Breakpoints.TABLET,
       isMobileSize: action.payload.width <= Breakpoints.MOBILE,
       positionHorizontal: state.device.isAdaptive && ratio > 1,
+    };
+  });
+
+  builder.addCase(updateDocumentParams, (state, action) => {
+    state.document = {
+      ...state.document,
+      remInPixels: action.payload.remInPixels,
     };
   });
 });

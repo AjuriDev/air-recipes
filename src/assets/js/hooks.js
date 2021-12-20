@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateWindowParams } from '../../store/actions/responsive';
+import { updateWindowParams, updateDocumentParams } from '../../store/actions/responsive';
 
-const useWindowResizer = () => {
+const useResponsive = () => {
   const dispatch = useDispatch();
 
   const handleWindowResize = () => {
@@ -10,6 +10,12 @@ const useWindowResizer = () => {
     const height = document.body.clientHeight;
 
     dispatch(updateWindowParams({ width, height }));
+
+    const htmlEl = document.querySelector('html');
+    const htmlFontSize = window.getComputedStyle(htmlEl, null).getPropertyValue('font-size');
+    const remInPixels = parseFloat(htmlFontSize);
+
+    dispatch(updateDocumentParams({ remInPixels }));
   };
 
   useEffect(() => {
@@ -30,6 +36,6 @@ const useStartFetching = (isFetching) => {
 };
 
 export {
-  useWindowResizer,
+  useResponsive,
   useStartFetching,
 };
