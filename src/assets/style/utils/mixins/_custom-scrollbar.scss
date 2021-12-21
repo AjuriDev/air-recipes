@@ -5,7 +5,7 @@ $scrollbarWidth: 1rem;
   overflow-y: auto;
 
   @include --from-tablet {
-    padding-right: $paddingRight + $scrollbarWidth;
+    padding-right: $scrollbarWidth + $paddingRight;
 
     &::-webkit-scrollbar {
       width: $scrollbarWidth; /* width of the entire scrollbar */
