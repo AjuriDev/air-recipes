@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
-import {useScrollTo} from '../../../assets/js/hooks';
+import { useSelector, useDispatch } from 'react-redux';
+import { useScrollTo } from '../../../assets/js/hooks';
 import { Link } from 'react-router-dom';
 import Container from '../Container';
 import Input from '../../_UI/Input';
 import { search, filter } from '../../../assets/i/sprite';
 import headerImg from '../../../assets/i/header-image.png';
+import { openModal } from '../../../store/actions/modal';
 import { AppRoute, StoreNameSpace } from '../../../assets/js/const';
 import getNumericDiapasonConverter from '../../../assets/js/utils/getNumericDiapasonConverter';
 import { gsap } from 'gsap';
@@ -20,6 +21,8 @@ const HeaderHeight = {
 const SCROLL_DISTANCE = 30;
 
 const Header = () => {
+  const dispatch = useDispatch();
+
   const { remInPixels } = useSelector(
     (state) => state[StoreNameSpace.RESPONSIVE].document
   );
@@ -75,6 +78,18 @@ const Header = () => {
     setSearchQuery(value);
   };
 
+  const handleFilterShow = (e) => {
+    e.preventDefault();
+
+    dispatch(
+      openModal({
+        render() {
+          return <div>test</div>;
+        },
+      })
+    );
+  };
+
   return (
     <header ref={headerEl} className="header">
       <Container>
@@ -91,7 +106,11 @@ const Header = () => {
               icon={search}
               isClearable
             />
-            <button className="header__show-filters btn _icon" type="button">
+            <button
+              className="header__show-filters btn _icon"
+              type="button"
+              onClick={handleFilterShow}
+            >
               {filter}
             </button>
           </form>

@@ -1,0 +1,44 @@
+@import 'src/assets/style/utils';
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $z_index_modal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgba($color_white, 0.8);
+
+  &__content {
+    position: relative;
+    min-width: 44rem;
+    max-width: calc(100% - 4rem);
+    margin: 4rem;
+    padding: 3.2rem;
+    background-color: $color_white;
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.14), 0 6px 30px rgba(0, 0, 0, 0.12),
+      0 8px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  &__close {
+    @include reset-btn;
+    @include box(2.4rem);
+    position: absolute;
+    top: 1.6rem;
+    right: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: $color_shade50;
+    cursor: pointer;
+    transition-duration: 300ms;
+
+    > svg {
+      @include box(2.4rem);
+    }
+  }
+}

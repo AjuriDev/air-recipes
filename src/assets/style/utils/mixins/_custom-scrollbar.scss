@@ -12,7 +12,7 @@ $scrollbarWidth: 1rem;
     }
 
     &::-webkit-scrollbar-track {
-      background: rgba($color_base0, 0.2); /* color of the tracking area */
+      background: rgba($color_base0, 0.1); /* color of the tracking area */
     }
 
     &::-webkit-scrollbar-thumb {

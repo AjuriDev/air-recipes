@@ -24,7 +24,10 @@ import {
 } from 'mobile-device-detect';
 import { Breakpoints } from '../../assets/js/const';
 import hasWebGLSupport from '../../assets/js/utils/hasWebGLSupport';
-import { updateWindowParams, updateDocumentParams } from '../actions/responsive';
+import {
+  updateWindowParams,
+  updateDocumentParams,
+} from '../actions/responsive';
 
 const initialState = {
   window: {

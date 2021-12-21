@@ -64,4 +64,12 @@ const useScrollTo = (el) => {
   }, [location.pathname]);
 };
 
-export { useResponsive, useStartFetching, useScrollTo };
+const useBlockPageScroll = () => {
+  useEffect(() => {
+    document.body.style.overflowY = 'hidden';
+
+    return () => (document.body.style.overflowY = 'auto');
+  }, []);
+};
+
+export { useResponsive, useStartFetching, useScrollTo, useBlockPageScroll };

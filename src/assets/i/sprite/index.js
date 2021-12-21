@@ -7,13 +7,4 @@ import time from './time';
 import cuisine from './cuisine';
 import calories from './calories';
 
-export {
-  search,
-  clear,
-  close,
-  cuisine,
-  calories,
-  difficulty,
-  filter,
-  time,
-};
+export { search, clear, close, cuisine, calories, difficulty, filter, time };

@@ -9,7 +9,7 @@ const humanizeCookTime = (time) => {
   } else if (hours === 1) {
     return '' + hours + ' hour';
   }
-  return '' + (+hours.toFixed(2)) + ' hours';
+  return '' + +hours.toFixed(2) + ' hours';
 };
 
 export default humanizeCookTime;

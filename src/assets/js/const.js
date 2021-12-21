@@ -26,6 +26,7 @@ const StoreNameSpace = {
   RESPONSIVE: 'RESPONSIVE',
   RECIPES: 'RECIPES',
   RECIPE: 'RECIPE',
+  MODAL: 'MODAL',
 };
 
 const Breakpoints = {
