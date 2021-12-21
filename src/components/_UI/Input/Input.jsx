@@ -25,8 +25,7 @@ const Input = ({ isClearable, icon, onChange, value, onClear, ...props }) => {
 
   const handleInputClear = (e) => {
     e.preventDefault();
-    setInputValue('');
-    !!onClear && onClear();
+    !!onClear ? onClear() : setInputValue('');
   };
 
   return (

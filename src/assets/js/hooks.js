@@ -61,15 +61,21 @@ const useScrollTo = (el) => {
       left: 0,
       behavior: 'smooth',
     });
-  }, [location.pathname]);
+  }, [el, location.pathname]);
 };
 
-const useBlockPageScroll = () => {
+const useBlockPageScroll = (isBlock = true) => {
   useEffect(() => {
-    document.body.style.overflowY = 'hidden';
+    if (isBlock) {
+      document.body.style.overflowY = 'hidden';
+      document.documentElement.style.overflowY = 'hidden';
+    }
 
-    return () => (document.body.style.overflowY = 'auto');
-  }, []);
+    return () => {
+      document.body.style.overflowY = '';
+      document.documentElement.style.overflowY = '';
+    };
+  }, [isBlock]);
 };
 
 export { useResponsive, useStartFetching, useScrollTo, useBlockPageScroll };

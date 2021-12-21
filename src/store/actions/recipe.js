@@ -1,9 +1,9 @@
 import { createAction } from '@reduxjs/toolkit';
 
 const ActionType = {
-  REQUEST_RECIPE: 'recipes/requestRecipe',
-  SET_RECIPE: 'recipes/setRecipe',
-  SET_RECIPE_ERROR: 'recipes/setRecipeError',
+  REQUEST_RECIPE: 'recipe/requestRecipe',
+  SET_RECIPE: 'recipe/setRecipe',
+  SET_RECIPE_ERROR: 'recipe/setRecipeError',
 };
 
 const setRecipe = createAction(ActionType.SET_RECIPE, (payload) => ({

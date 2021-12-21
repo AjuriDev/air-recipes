@@ -1,32 +1,25 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import { useBlockPageScroll } from '../../../assets/js/hooks';
 import { close } from '../../../assets/i/sprite';
-import { closeModal } from '../../../store/actions/modal';
-import { StoreNameSpace } from '../../../assets/js/const';
 
 import './Modal.scss';
 
-const Modal = () => {
-  const dispatch = useDispatch();
-
-  const { isOpen, withoutCloseBtn, render } = useSelector(
-    (state) => state[StoreNameSpace.MODAL]
-  );
-
+const Modal = ({ onToggle, withoutCloseBtn, children }) => {
   useEffect(() => {
     document.addEventListener('keydown', handleEscKeydown);
     return () => document.removeEventListener('keydown', handleEscKeydown);
   });
 
-  const handleClose = () => dispatch(closeModal());
+  useBlockPageScroll();
+
+  const handleClose = () => onToggle(false);
   const handleEscKeydown = (e) => {
     if (e.code !== 'Escape') return;
-    handleClose();
+    onToggle(false);
   };
 
-  if (!render) return null;
-
-  return !isOpen ? null : (
+  return ReactDOM.createPortal(
     <div className="modal" onMouseDown={handleClose}>
       <div className="modal__content" onMouseDown={(e) => e.stopPropagation()}>
         {withoutCloseBtn ? null : (
@@ -39,9 +32,10 @@ const Modal = () => {
             {close}
           </button>
         )}
-        {render()}
+        {children}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

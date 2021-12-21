@@ -1,0 +1,60 @@
+@import 'src/assets/style/utils';
+
+.filter {
+  @include text;
+
+  &__title {
+    @include h3;
+    margin: 0;
+
+    &:not(:last-child) {
+      margin-bottom: 1.6rem;
+    }
+  }
+
+  &__list {
+    @include reset-list;
+
+    &:not(:last-child) {
+      margin-bottom: 2.4rem;
+      border-bottom: 1px solid $color_shade20;
+    }
+
+    > li {
+      &:not(:last-child) {
+        border-bottom: 1px solid $color_shade20;
+      }
+    }
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:not(:last-child) {
+      margin-bottom: 2.4rem;
+    }
+
+    > * {
+      &:not(:last-child) {
+        margin-right: 1.6rem;
+      }
+    }
+  }
+
+  &__reset {
+    @include btn-outline;
+  }
+
+  &__submit {
+    @include btn-filled;
+    margin-left: auto;
+  }
+
+  .range-input {
+    &:not(:last-child) {
+      margin-bottom: 6.2rem;
+    }
+  }
+}

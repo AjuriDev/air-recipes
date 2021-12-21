@@ -4,7 +4,6 @@ import MainScreen from './screens/MainScreen';
 import RecipeScreen from './screens/RecipeScreen';
 import NotFoundScreen from './screens/NotFoundScreen';
 import Header from './components/_layout/Header';
-import Modal from './components/_layout/Modal';
 import { AppRoute } from './assets/js/const';
 
 function App() {
@@ -25,8 +24,6 @@ function App() {
           <NotFoundScreen />
         </Route>
       </Switch>
-
-      <Modal />
     </BrowserRouter>
   );
 }
