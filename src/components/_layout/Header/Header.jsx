@@ -9,8 +9,12 @@ import Modal from '../Modal';
 import { search, filter } from '../../../assets/i/sprite';
 import headerImg from '../../../assets/i/header-image.png';
 import { setFilter } from '../../../store/actions/filter';
-import { getAvailableCuisines } from '../../../store/selectors';
+import {
+  getAvailableCuisines,
+  getAvailableCaloricityRange,
+} from '../../../store/selectors';
 import { AppRoute, StoreNameSpace } from '../../../assets/js/const';
+import { validateCaloricityRange } from '../../../assets/js/utils/caloricity';
 import getNumericDiapasonConverter from '../../../assets/js/utils/getNumericDiapasonConverter';
 import { gsap } from 'gsap';
 
@@ -31,6 +35,7 @@ const Header = () => {
   );
 
   const { availableCuisines } = useSelector(getAvailableCuisines);
+  const { availableCaloricityRange } = useSelector(getAvailableCaloricityRange);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,8 +45,14 @@ const Header = () => {
   const imageEl = useRef(null);
 
   useEffect(() => {
-    setIsFilterAvailable(availableCuisines?.length > 1);
-  }, [availableCuisines]);
+    const hasCuisines = availableCuisines?.length > 1;
+    const hasCaloricityRange = validateCaloricityRange([
+      availableCaloricityRange.min,
+      availableCaloricityRange.max,
+    ]);
+
+    setIsFilterAvailable(hasCuisines || hasCaloricityRange);
+  }, [availableCuisines, availableCaloricityRange]);
 
   useEffect(() => {
     const convertScrollToHeightInPixels = getNumericDiapasonConverter(

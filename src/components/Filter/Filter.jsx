@@ -8,6 +8,7 @@ import {
   getAvailableCaloricityRange,
 } from '../../store/selectors';
 import { setFilter } from '../../store/actions/filter';
+import { validateCaloricityRange } from '../../assets/js/utils/caloricity';
 import { StoreNameSpace, CALORICITY_RANGE_STEP } from '../../assets/js/const';
 
 import './Filter.scss';
@@ -98,27 +99,34 @@ const Filter = ({ onSubmit }) => {
     <form className="filter" onSubmit={handleFilterSubmit}>
       <h2 className="filter__title">Filter</h2>
 
-      <ul className="filter__list">
-        {availableCuisines.map(({ id, title: cuisineName }) => (
-          <li key={id}>
-            <Checkbox
-              checked={selectedCuisines[cuisineName.toLowerCase()] || false}
-              onChange={handleCuisineChange}
-              text={cuisineName}
-              name={cuisineName.toLowerCase()}
-            />
-          </li>
-        ))}
-      </ul>
+      {availableCuisines?.length > 1 && (
+        <ul className="filter__list">
+          {availableCuisines.map(({ id, title: cuisineName }) => (
+            <li key={id}>
+              <Checkbox
+                checked={selectedCuisines[cuisineName.toLowerCase()] || false}
+                onChange={handleCuisineChange}
+                text={cuisineName}
+                name={cuisineName.toLowerCase()}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
 
-      <RangeInput
-        onChange={handleCaloriesChange}
-        values={caloriesRange}
-        text="Calories, kCal"
-        min={availableCaloricityRange.min}
-        max={availableCaloricityRange.max}
-        step={CALORICITY_RANGE_STEP}
-      />
+      {validateCaloricityRange([
+        availableCaloricityRange.min,
+        availableCaloricityRange.max,
+      ]) && (
+        <RangeInput
+          onChange={handleCaloriesChange}
+          values={caloriesRange}
+          text="Calories, kCal"
+          min={availableCaloricityRange.min}
+          max={availableCaloricityRange.max}
+          step={CALORICITY_RANGE_STEP}
+        />
+      )}
 
       <footer className="filter__controls">
         {isClearable && (
