@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Range } from 'react-range';
 import PropTypes from 'prop-types';
-import { CaloriesRange } from '../../../assets/js/const';
 
 import './RangeInput.scss';
 
-const RangeInput = ({ onChange, values, text }) => {
+const RangeInput = ({ onChange, values, text, ...props }) => {
   const [rangeValues, setRangeValues] = useState(values);
 
   useEffect(() => {
@@ -20,9 +19,7 @@ const RangeInput = ({ onChange, values, text }) => {
     <div className="range-input">
       <div className="range-input__wrapper">
         <Range
-          step={CaloriesRange.STEP}
-          min={CaloriesRange.MIN}
-          max={CaloriesRange.MAX}
+          {...props}
           values={rangeValues}
           onChange={(range) => setRangeValues(range)}
           onFinalChange={handleRangeSubmit}

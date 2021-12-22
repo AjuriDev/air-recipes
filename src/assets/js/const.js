@@ -34,26 +34,14 @@ const Breakpoints = {
   MOBILE: 767,
 };
 
-const Cuisines = {
-  CARIBBEAN: 'CARIBBEAN',
-  GREEK: 'GREEK',
-  FRENCH: 'FRENCH',
-  INDIAN: 'INDIAN',
-  CHINESE: 'CHINESE',
-};
-
-const CaloriesRange = {
-  MIN: 100,
-  MAX: 1200,
-  STEP: 10,
-};
-
 const ToasterTypes = {
   SUCCESS: 'success',
   ERROR: 'error',
 };
 
 const TOASTER_DURATION = 5000;
+
+const CALORICITY_RANGE_STEP = 10;
 
 export {
   AppRoute,
@@ -63,6 +51,5 @@ export {
   ToasterTypes,
   TOASTER_DURATION,
   ResponseTypes,
-  Cuisines,
-  CaloriesRange,
+  CALORICITY_RANGE_STEP,
 };

@@ -5,6 +5,12 @@
     @include h2;
     margin: 0;
 
+    &._empty-message {
+      display: flex;
+      align-items: center;
+      min-height: 10rem;
+    }
+
     &:not(:last-child) {
       margin-bottom: 2.4rem;
 

@@ -42,6 +42,7 @@ const useStartFetching = (isFetching) => {
 };
 
 const useScrollTo = (el) => {
+  // TODO сделать хук более универсальным
   const location = useLocation();
   const [initRoute, setInitRoute] = useState(location.pathname);
 
@@ -57,7 +58,7 @@ const useScrollTo = (el) => {
     )
       return;
     window.scrollTo({
-      top: el.clientHeight - 16,
+      top: el.clientHeight - 16, // скролл чуть ниже хедера
       left: 0,
       behavior: 'smooth',
     });

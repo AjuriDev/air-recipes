@@ -7,6 +7,7 @@ import {
 
 const initialState = {
   isFetching: false,
+  isFetched: false,
   isError: false,
   errors: [],
   items: [],
@@ -15,11 +16,13 @@ const initialState = {
 const recipes = createReducer(initialState, (builder) => {
   builder.addCase(setRecipes, (state, action) => {
     state.isFetching = false;
+    state.isFetched = true;
     state.items = action.payload.recipes;
   });
 
   builder.addCase(requestRecipes, (state) => {
     state.isFetching = true;
+    state.isFetched = false;
     state.isError = false;
     state.errors = [];
   });

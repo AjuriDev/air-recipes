@@ -6,7 +6,7 @@ import {
   calories as caloriesIcon,
   cuisine as cuisineIcon,
 } from '../../assets/i/sprite';
-import humanizeCookTime from '../../assets/js/utils/humanizeCookTime';
+import humanizeCookTime from '../../assets/js/utils/recipes/humanizeCookTime';
 import { recipeDetailed as recipeDetailedTypes } from '../../assets/js/prop-types';
 
 import './RecipeDetailed.scss';

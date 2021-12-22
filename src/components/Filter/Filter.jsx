@@ -3,8 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import Checkbox from '../_UI/Checkbox';
 import RangeInput from '../_UI/RangeInput';
 import PropTypes from 'prop-types';
+import {
+  getAvailableCuisines,
+  getAvailableCaloricityRange,
+} from '../../store/selectors';
 import { setFilter } from '../../store/actions/filter';
-import { Cuisines, StoreNameSpace, CaloriesRange } from '../../assets/js/const';
+import { StoreNameSpace, CALORICITY_RANGE_STEP } from '../../assets/js/const';
 
 import './Filter.scss';
 
@@ -14,6 +18,8 @@ const Filter = ({ onSubmit }) => {
   const { cuisines, calories } = useSelector(
     (state) => state[StoreNameSpace.FILTER]
   );
+  const { availableCuisines } = useSelector(getAvailableCuisines);
+  const { availableCaloricityRange } = useSelector(getAvailableCaloricityRange);
 
   const [selectedCuisines, setSelectedCuisines] = useState({});
   const [caloriesRange, setCaloriesRange] = useState(calories);
@@ -21,12 +27,14 @@ const Filter = ({ onSubmit }) => {
 
   useEffect(() => {
     setSelectedCuisines(
-      Object.keys(Cuisines).reduce((acc, cuisine) => {
-        acc[cuisine] = cuisines.includes(cuisine);
+      availableCuisines.reduce((acc, { title: cuisineName }) => {
+        acc[cuisineName.toLowerCase()] = cuisines.includes(
+          cuisineName.toLowerCase()
+        );
         return acc;
       }, {})
     );
-  }, [cuisines]);
+  }, [cuisines, availableCuisines]);
 
   useEffect(() => {
     const isAllCuisinesChecked = Object.keys(selectedCuisines).some(
@@ -34,10 +42,11 @@ const Filter = ({ onSubmit }) => {
     );
 
     const [min, max] = caloriesRange;
-    const isRangeSelected = max - min < CaloriesRange.MAX - CaloriesRange.MIN;
+    const isRangeSelected =
+      max - min < availableCaloricityRange.max - availableCaloricityRange.min;
 
     setIsClearable(isAllCuisinesChecked || isRangeSelected);
-  }, [selectedCuisines, caloriesRange]);
+  }, [selectedCuisines, caloriesRange, availableCaloricityRange]);
 
   const handleCuisineChange = (e) => {
     setSelectedCuisines((oldCuisines) => ({
@@ -54,13 +63,16 @@ const Filter = ({ onSubmit }) => {
     e.preventDefault();
 
     setSelectedCuisines(
-      Object.keys(Cuisines).reduce((acc, cuisine) => {
-        acc[cuisine] = true;
+      availableCuisines.reduce((acc, { title }) => {
+        acc[title.toLowerCase()] = true;
         return acc;
       }, {})
     );
 
-    setCaloriesRange([CaloriesRange.MIN, CaloriesRange.MAX]);
+    setCaloriesRange([
+      availableCaloricityRange.min,
+      availableCaloricityRange.max,
+    ]);
   };
 
   const handleFilterSubmit = (e) => {
@@ -87,13 +99,13 @@ const Filter = ({ onSubmit }) => {
       <h2 className="filter__title">Filter</h2>
 
       <ul className="filter__list">
-        {Object.values(Cuisines).map((cuisine) => (
-          <li key={cuisine}>
+        {availableCuisines.map(({ id, title: cuisineName }) => (
+          <li key={id}>
             <Checkbox
-              checked={selectedCuisines[cuisine] || false}
+              checked={selectedCuisines[cuisineName.toLowerCase()] || false}
               onChange={handleCuisineChange}
-              text={cuisine}
-              name={cuisine}
+              text={cuisineName}
+              name={cuisineName.toLowerCase()}
             />
           </li>
         ))}
@@ -103,6 +115,9 @@ const Filter = ({ onSubmit }) => {
         onChange={handleCaloriesChange}
         values={caloriesRange}
         text="Calories, kCal"
+        min={availableCaloricityRange.min}
+        max={availableCaloricityRange.max}
+        step={CALORICITY_RANGE_STEP}
       />
 
       <footer className="filter__controls">

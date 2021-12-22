@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import { recipe as recipeTypes } from '../../../../assets/js/prop-types';
-import humanizeCookTime from '../../../../assets/js/utils/humanizeCookTime';
+import humanizeCookTime from '../../../../assets/js/utils/recipes/humanizeCookTime';
 import { AppRoute } from '../../../../assets/js/const';
 
 import './RecipeCard.scss';

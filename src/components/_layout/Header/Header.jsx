@@ -9,6 +9,7 @@ import Modal from '../Modal';
 import { search, filter } from '../../../assets/i/sprite';
 import headerImg from '../../../assets/i/header-image.png';
 import { setFilter } from '../../../store/actions/filter';
+import { getAvailableCuisines } from '../../../store/selectors';
 import { AppRoute, StoreNameSpace } from '../../../assets/js/const';
 import getNumericDiapasonConverter from '../../../assets/js/utils/getNumericDiapasonConverter';
 import { gsap } from 'gsap';
@@ -29,11 +30,18 @@ const Header = () => {
     (state) => state[StoreNameSpace.RESPONSIVE].document
   );
 
+  const { availableCuisines } = useSelector(getAvailableCuisines);
+
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isFilterAvailable, setIsFilterAvailable] = useState(false);
 
   const headerEl = useRef(null);
   const imageEl = useRef(null);
+
+  useEffect(() => {
+    setIsFilterAvailable(availableCuisines?.length > 1);
+  }, [availableCuisines]);
 
   useEffect(() => {
     const convertScrollToHeightInPixels = getNumericDiapasonConverter(
@@ -129,6 +137,7 @@ const Header = () => {
                 className="header__show-filter btn _icon"
                 type="button"
                 onClick={handleFilterShow}
+                disabled={!isFilterAvailable}
               >
                 {filter}
               </button>
@@ -140,7 +149,7 @@ const Header = () => {
         </Container>
       </header>
 
-      {isModalOpen && (
+      {isModalOpen && isFilterAvailable && (
         <Modal onToggle={toggleModal}>
           <Filter onSubmit={() => toggleModal(false)} />
         </Modal>
